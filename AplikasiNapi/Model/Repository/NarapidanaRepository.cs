@@ -200,14 +200,13 @@ namespace AplikasiNapi.Model.Repository
         {
             var result = 0;
 
-            var sql = @"update narapidana set nama_napi = @nama_napi, jeniskelamin_napi = @jeniskelamin_napi, tempatlahir_napi = @tempatlahir_napi, tanggallahir_napi = @tanggallahir_napi, alamat_napi = @alamat_napi, notlp_napi = @notlp_napi, kasus_napi = @kasus_napi, tgl_masuk = @tgl_masuk, tgl_keluar = @tgl_keluar
+            var sql = @"update narapidana set nama_napi = @nama_napi, jeniskelamin_napi = @jeniskelamin_napi, tempatlahir_napi = @tempatlahir_napi, tanggallahir_napi = @tanggallahir_napi, alamat_napi = @alamat_napi, notlp_napi = @notlp_napi, kasus_napi = @kasus_napi, tgl_masuk = @tgl_masuk, tgl_bebas = @tgl_bebas
                         where id_napi = @id_napi";
 
             // membuat objek command menggunakan blok using
             using (var cmd = new OleDbCommand(sql, _context.Conn))
             {
                 // set nilai parameter @npm, @nama dan @alamat
-                cmd.Parameters.AddWithValue("@id_napi", obj.id_napi);
                 cmd.Parameters.AddWithValue("@nama_napi", obj.nama_napi);
                 cmd.Parameters.AddWithValue("@jeniskelamin_napi", obj.jeniskelamin_napi);
                 cmd.Parameters.AddWithValue("@tempatlahir_napi", obj.tempatlahir_napi);
@@ -217,6 +216,7 @@ namespace AplikasiNapi.Model.Repository
                 cmd.Parameters.AddWithValue("@kasus_napi", obj.kasus_napi);
                 cmd.Parameters.AddWithValue("@tgl_masuk", obj.tgl_masuk);
                 cmd.Parameters.AddWithValue("@tgl_bebas", obj.tgl_bebas);
+                cmd.Parameters.AddWithValue("@id_napi", obj.id_napi);
 
                 // jalankan perintah UPDATE dan tampung hasilnya ke dalam variabel result
                 result = cmd.ExecuteNonQuery();
